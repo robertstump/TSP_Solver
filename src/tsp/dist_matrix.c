@@ -1,20 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "scratch.h"
+#include "arena_base.h"
+#include "scratch_arena.h"
+#include "dist_matrix.h"
 
 #define LINE_BUFFER 1024
 #define FALSE 0
 #define TRUE 1
-
-#define DM_INDEX(dm, i, j) ((i < j) ? ((dm).rowOffset[i] + ((j) - (i) - 1)) : ((dm).rowOffset[j] + ((i) - (j) - 1)))
-
-typedef float Vec2[2];
-
-typedef struct { 
-    float* distances;
-    unsigned int* rowOffset;
-} DistanceMatrix;
 
 unsigned int CountDataSize(const char *filename) {
 
@@ -59,7 +52,7 @@ Vec2* LoadDistances(ScratchArena *arena, const char *filename, unsigned int size
     char buffer[LINE_BUFFER];
     int found = 0;
 
-   Vec2* dist_matrix = arenaAlloc(arena, sizeof(*dist_matrix) * size, ALIGN_4);
+   Vec2* dist_matrix = arenaScratchAlloc(arena, sizeof(*dist_matrix) * size, ALIGN_4);
 
     while(fgets(buffer, sizeof(buffer), file)) {
         if(!found) {
@@ -85,9 +78,9 @@ Vec2* LoadDistances(ScratchArena *arena, const char *filename, unsigned int size
 DistanceMatrix CreateDistanceMatrix(ScratchArena *arena, Vec2* coords, unsigned int count) {
     unsigned int flatSize = ((uint64_t)count * (count - 1)) >> 1;
     DistanceMatrix dm;
-    dm.distances = arenaAlloc(arena, (flatSize * sizeof(float)) + sizeof(float), ALIGN_4);
-    arenaPush(arena);
-    dm.rowOffset = arenaAlloc(arena, sizeof(float) * count, ALIGN_4);
+    arenaScratchPush(arena);
+    dm.distances = arenaScratchAlloc(arena, (flatSize * sizeof(float)) + sizeof(float), ALIGN_4);
+    dm.rowOffset = arenaScratchAlloc(arena, sizeof(float) * count, ALIGN_4);
     unsigned int index = 0;
     for(int i = 0; i < count; i++) {
         dm.rowOffset[i] = index;
@@ -99,7 +92,6 @@ DistanceMatrix CreateDistanceMatrix(ScratchArena *arena, Vec2* coords, unsigned 
             index++;
         }
     }
-    flatArray[flatSize] = 0;
     return dm;
 }
 

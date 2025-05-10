@@ -1,26 +1,9 @@
-#ifndef m_SCRATCH_H
-#define m_SCRATCH_H
+#include <stdio.h>
+#include <stdlib.h>
+#include "arena_base.h"
+#include "scratch_arena.h"
 
-typedef struct {
-    char* base;
-    size_t size;
-    size_t offset;
-    size_t previous;
-} ScratchArena;
-
-typedef enum AlignType {
-    ALIGN_DEFAULT   = 0,
-    ALIGN_1         = 1,
-    ALIGN_2         = 2,
-    ALIGN_4         = 4,
-    ALIGN_8         = 8,
-    ALIGN_16        = 16,
-    ALIGN_32        = 32,
-    ALIGN_64        = 64,
-    ALIGN_128       = 128
-} AlignType;
-
-ScratchArena createArena(size_t arena_size) {
+ScratchArena createScratchArena(size_t arena_size) {
     ScratchArena arena;
     arena.base = malloc(arena_size);
     if(!arena.base) {
@@ -33,12 +16,7 @@ ScratchArena createArena(size_t arena_size) {
     return arena;
 }
 
-static inline size_t AlignPad(size_t offset, size_t alignment) {
-    size_t mod = offset % alignment;
-    return (mod == 0) ? 0 : (alignment - mod);
-}
-
-void* arenaAlloc(ScratchArena* arena, size_t alloc_size, size_t alignment) {
+void* arenaScratchAlloc(ScratchArena* arena, size_t alloc_size, size_t alignment) {
     switch(alignment) {
         case ALIGN_1:
         case ALIGN_2:
@@ -76,19 +54,19 @@ void* arenaAlloc(ScratchArena* arena, size_t alloc_size, size_t alignment) {
     return NULL;
 }
 
-void resetArena(ScratchArena* arena) {
+void resetScratchArena(ScratchArena* arena) {
     arena->offset = 0;
 }
 
-void arenaPush(ScratchArena* arena) {
+void arenaScratchPush(ScratchArena* arena) {
     arena->previous = arena->offset;
 }
 
-void arenaPop(ScratchArena* arena) {
+void arenaScratchPop(ScratchArena* arena) {
     arena->offset = arena->previous;
 }
 
-void destroyArena(ScratchArena* arena) {
+void destroyScratchArena(ScratchArena* arena) {
     if(arena == NULL) {
         fprintf(stdout, "Arena already free, exit function.\n");
         return;
@@ -100,5 +78,3 @@ void destroyArena(ScratchArena* arena) {
         arena->offset = 0;
     }
 }
-
-#endif

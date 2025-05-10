@@ -7,6 +7,7 @@ echo "##########################################################"
 DEBUG_FLAGS="-fsanitize=address -g -O0 -Wall -Werror"
 LIGHT_DBG_FLAGS="-g -Wall -Werror"
 CFLAGS=$LIGHT_DBG_FLAGS
+INCLUDE_FLAGS="-Iinclude -Isrc -Isrc/tsp -Isrc/memory"
 TEST_ONLY=false
 
 #for arg in "$@"; do
@@ -32,6 +33,24 @@ for arg in "$@"; do
     esac
 done
 
+mkdir -p build
+mkdir -p bin
+
+echo "[.] Compiling object files..."
+clang -std=c99 $CFLAGS -c src/memory/scratch_arena.c -o build/scratch_arena.o $INCLUDE_FLAGS 
+clang -std=c99 $CFLAGS -c src/tsp/dist_matrix.c -o build/dist_matrix.o $INCLUDE_FLAGS
+#add as needed here:
+
+#TARGET="bin/tsp_solver"
+#clang -std=c99 $CFLAGS build/*.o -o $TARGET $INCLUDE_FLAGS
+
+if [ $? -ne 0 ]; then
+    echo "[ ] Compilation/Linkage Failed."
+    exit 1
+fi
+
+echo "[X] Main Compilation Complete"
+
 if [ "$TEST_ONLY" = true ]; then
     echo
     echo "##########################################################"
@@ -48,27 +67,11 @@ if [ "$TEST_ONLY" = true ]; then
         exit 1
     fi
 
-echo "[X] All tests passed."
-exit 0
+    echo "[X] All tests passed."
+    exit 0
 
 fi
 
-SRC_DIR="src"
-INCLUDE_DIR="include"
-BIN_DIR="bin"
-TARGET="$BIN_DIR/dist_matrix"
-
-SRC_MAIN="$SRC_DIR/dist_matrix.c"
-#SRC_SECONDARY="SRC_DIR/..."
-
-clang -std=c99 $LIGHT_DBG_FLAGS -o $TARGET $SRC_MAIN -Iinclude -Isrc
-
-if [ $? -ne 0 ]; then
-    echo "[ ] Compilation Failed."
-    exit 1
-fi
-
-echo "[X] Main Compilation Complete"
 echo 
 echo "##########################################################"
 echo "#                   Running Unit Tests....               #"
@@ -85,7 +88,7 @@ if ! ./runtests.sh; then
 fi
 
 echo "[X] All tests passed."
-
+echo
 echo "##########################################################"
 echo "#                  Begin TSP Solver Solutions            #"
 echo "##########################################################"
