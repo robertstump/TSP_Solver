@@ -1,16 +1,15 @@
 #include "minunit.h"
 #include "arena_base.h"
 #include "scratch_arena.h"
-#include "page_arena.h"
 #include "dist_matrix.h"
 
 #define ARENA_SIZE 1024 * 1024
 
 mu_suite_start();
-int tests_run = 0;
+s32 tests_run = 0;
 
 char* test_count_lines() {
-    int count;
+    s32 count;
     count = CountDataSize("test_data/fake.tsp");
     mu_assert(count == 10, "Count should equal file lines!\n");
     fprintf(stdout, "[X] Count Data Size Success\n");
@@ -18,7 +17,7 @@ char* test_count_lines() {
 }
 
 char* test_real_data() { 
-    int count;
+    s32 count;
     count = CountDataSize("test_data/ca4663.tsp");
     mu_assert(count == 4663, "Count should equal number of cities!\n");
     fprintf(stdout, "[X] Count Cities Success\n");
@@ -26,7 +25,7 @@ char* test_real_data() {
 }
 
 char* test_italian_cities() {
-    int count;
+    s32 count;
     count = CountDataSize("test_data/it16862.tsp");
     mu_assert(count == 16862, "Count should equal number of italian cities\n");
     fprintf(stdout, "[X] Count Italian Cities Succes\n");
@@ -35,7 +34,7 @@ char* test_italian_cities() {
 
 char* test_dist_loading() {
     ScratchArena arena = createScratchArena(ARENA_SIZE);
-    int count;
+    s32 count;
     const char* filename = "test_data/fake.tsp";
     count = CountDataSize(filename);
     mu_assert(count == 10, "Count should equal data size!\n");
@@ -54,7 +53,7 @@ char* test_dist_loading() {
 
 char* test_canada_cities() {
     ScratchArena arena = createScratchArena(ARENA_SIZE);
-    int count;
+    s32 count;
     const char* filename = "test_data/ca4663.tsp";
     count = CountDataSize(filename);
     mu_assert(count == 4663, "Count must equal size of data.\n");

@@ -5562,3 +5562,168 @@ DEBUG tests/test_scratch_arena.c:256:
 ------ test_one_align
 DEBUG tests/test_scratch_arena.c:257: 
 ------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:81: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_count_lines
+INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_real_data
+INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_italian_cities
+INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_dist_loading
+INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:77: 
+------ test_canada_cities
+INFO: Opened file successfully!
+DEBUG tests/test_scratch_arena.c:261: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_overflow
+ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_alloc_exact_boundary
+ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_overflow_huge_allocation
+ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_odd_alignment
+ERROR: Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:257: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:81: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_count_lines
+INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_real_data
+INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_italian_cities
+INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_dist_loading
+INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:77: 
+------ test_canada_cities
+INFO: Opened file successfully!
+DEBUG tests/test_scratch_arena.c:261: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_overflow
+ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_alloc_exact_boundary
+ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_overflow_huge_allocation
+ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_odd_alignment
+ERROR: Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:257: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:81: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_count_lines
+INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_real_data
+INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_italian_cities
+INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_dist_loading
+INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:77: 
+------ test_canada_cities
+INFO: Opened file successfully!
+DEBUG tests/test_scratch_arena.c:261: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_overflow
+ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_alloc_exact_boundary
+ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_overflow_huge_allocation
+ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_odd_alignment
+ERROR: Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:257: 
+------ test_alignment_is_aligned

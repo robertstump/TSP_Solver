@@ -1,7 +1,9 @@
 #ifndef m_ARENA_BASE_H
 #define m_ARENA_BASE_H
 
-static inline size_t AlignPad(size_t offset, size_t alignment);
+#include "common_types.h"
+
+static inline usize AlignPad(usize offset, usize alignment);
 
 typedef enum AlignType {
    ALIGN_DEFAULT   = 0,
@@ -15,8 +17,8 @@ typedef enum AlignType {
     ALIGN_128       = 128
 } AlignType;
  
-static inline size_t AlignPad(size_t offset, size_t alignment) {
-    size_t mod = offset % alignment;
+static inline usize AlignPad(usize offset, usize alignment) {
+    usize mod = offset % alignment;
     return (mod == 0) ? 0 : (alignment - mod);
 }
 

@@ -3,7 +3,7 @@
 #include "arena_base.h"
 #include "scratch_arena.h"
 
-ScratchArena createScratchArena(size_t arena_size) {
+ScratchArena createScratchArena(usize arena_size) {
     ScratchArena arena;
     arena.base = malloc(arena_size);
     if(!arena.base) {
@@ -16,7 +16,7 @@ ScratchArena createScratchArena(size_t arena_size) {
     return arena;
 }
 
-void* arenaScratchAlloc(ScratchArena* arena, size_t alloc_size, size_t alignment) {
+void* arenaScratchAlloc(ScratchArena* arena, usize alloc_size, usize alignment) {
     switch(alignment) {
         case ALIGN_1:
         case ALIGN_2:
@@ -32,7 +32,7 @@ void* arenaScratchAlloc(ScratchArena* arena, size_t alloc_size, size_t alignment
                 return NULL;
             }
 
-            size_t aligned, align_pad, offset_pad;
+            usize aligned, align_pad, offset_pad;
             align_pad = AlignPad(alloc_size, alignment);
             aligned = align_pad + alloc_size;
 
@@ -46,7 +46,7 @@ void* arenaScratchAlloc(ScratchArena* arena, size_t alloc_size, size_t alignment
                 return NULL;
             }
 
-        void* ptr = (void*)(arena->base + arena->offset);
+        memptr ptr = (memptr)(arena->base + arena->offset);
         arena->offset += aligned;
         return ptr;
     }
