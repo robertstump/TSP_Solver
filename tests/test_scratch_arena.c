@@ -235,8 +235,6 @@ char* test_alignment_is_aligned() {
     return NULL;
 }
 
-//what happens if i alloc, and then pop and then ref the allocated pointer....?
-
 static char* all_tests() {
     mu_run_test(test_create_arena);
     mu_run_test(test_alloc_overflow);

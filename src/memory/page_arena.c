@@ -1,46 +1,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/mman.h>
 #include "arena_base.h"
 #include "page_arena.h"
 
-typedef struct {
-    usize totalSize;
-    memptr start;
-    memptr base;
-    usize offset;
-    usize previous;
-    usize limit;
-    usize pageSize;
-} memMap;
-
-typedef struct {
-    char* base;
-    usize offset;
-    usize size;
-    usize previous;
-    usize limit;
-} PageArena;
-
 memMap reservePages(usize requestedSize) {
     memMap map;
+
+    if (requestedSize < 1) {
+        LOG_ERROR("Allocation must be non-zero positive integer");
+        map.start = NULL;
+        map.base = NULL;
+        map.previous = 0;
+        map.offset = 0;
+        return map;
+    }
+
     map.pageSize = sysconf(_SC_PAGESIZE);
     usize remainder = requestedSize % map.pageSize;
     usize pageOffset = (remainder == 0) ? 0 : (map.pageSize - remainder);
-    usize totalUsableSize = requestedSize + pageOffset;
-    map.totalSize = totalUsableSize + 2 * map.pageSize;
+    map.size = requestedSize + pageOffset;
+    map.limit = map.size + 2 * map.pageSize;
 
-    map.start = mmap(NULL, map.totalSize, PROT_NONE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-    if (map->start == MAP_FAILED) {
+    map.start = mmap(NULL, map.limit, PROT_NONE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    if (map.start == MAP_FAILED) {
         fprintf(stderr, "FAILED TO MAP MEMORY PAGES");
         map.start = NULL;
         map.base = NULL;
-        map.totalSize = 0;
+        map.limit = 0;
         return map;
     }
-    mprotect((char*)map.start + map.pageSize, totalUsableSize, PROT_READ | PROT_WRITE);
+    mprotect((byte)map.start + map.pageSize, map.size, PROT_READ | PROT_WRITE);
     map.base = map.start + map.pageSize;
-    map.limit = (char*)map.base + totalUsableSize;
     map.previous = 0;
     map.offset = 0;
     return map;
@@ -48,8 +40,8 @@ memMap reservePages(usize requestedSize) {
 
 void pageAlign(memMap* map, usize arenaSize) {
     usize remainder = arenaSize % map->pageSize; 
-    alignPad = (remainder == 0) ? 0 : (map->pageSize - remainder);
-    if (map->offset + alignPad + arenaSize < map.limit) {
+    usize alignPad = (remainder == 0) ? 0 : (map->pageSize - remainder);
+    if (map->offset + alignPad + arenaSize < map->limit) {
         map->offset += arenaSize + alignPad;
     }
 }
@@ -63,14 +55,14 @@ void memMapPop(memMap* m) {
 }
 
 void releasePages(memMap* map) {
-    munmap(map->start, map->totalSize);
+    munmap(map->start, map->limit);
     map->start = NULL;
     map->base = NULL;
 }
 
 PageArena createPageArena(memMap* map, usize arenaSize) {
     PageArena arena;
-    arena.base = (char*)map->base + map->offset; 
+    arena.base = (byte)map->base + map->offset; 
     pageAlign(map, arenaSize);
     if(!arena.base) {
         fprintf(stderr, "Arena allocation failed.\n");

@@ -54,5 +54,6 @@ typedef void*       memptr;
 #define LOG_INFO(fmt, ...) fprintf(stderr, "[INFO]:  (%s:%d) : " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__)
 #define LOG_WARN(fmt, ...) fprintf(stderr, "[WARN]:  (%s:%d) : " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__)
 #define LOG_ERROR(fmt, ...) fprintf(stderr, "[ERROR]:  (%s:%d) :  " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__)
+#define PASS_TEST(fmt, ...) fprintf(stdout, "[X] (Line: %d) : " fmt "\n", __LINE__, ##__VA_ARGS__)
 
 #endif
