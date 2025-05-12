@@ -65,7 +65,7 @@ char* test_front_guard_check() {
     sigaction(SIGBUS, &sa, NULL);
     
     memMap *map = initMemMap(MEM_MAP_SIZE);
-    if (sigsetjmp(jump_env, 1) == 0) {
+if (sigsetjmp(jump_env, 1) == 0) {
         byte front_guard = (byte)map->limit;
         mu_assert(isMapValid(map),  "memMap must not return NULL value\n");
         mu_assert(map->pageSize * 4 + map->size == map->limit, "Total allocation should include three gaurd pages and metadata"); 
@@ -73,6 +73,7 @@ char* test_front_guard_check() {
         mu_assert(0, "front guard did not trip SIGSEGV\n");
     }
     releasePages(map);
+    map = NULL;
     PASS_TEST("Front Guard raised SIGV correctly on guard write");
     return NULL;
 }
@@ -95,6 +96,7 @@ char* test_guard_position_rear() {
         mu_assert(0, "rear guard did not trip SIGSEGV\n");
     }
     releasePages(map);
+    map = NULL;
     PASS_TEST("Tripped SIGSEGV at rear_guard boundary");
     return NULL;
 }
@@ -117,6 +119,7 @@ char* test_guard_position_front() {
         mu_assert(0, "front guard SIGSEG not triggered at boundary\n");
     }
     releasePages(map);
+    map = NULL;
     PASS_TEST("Tripped SIGSEGV at front guard boundary");
     return NULL;
 }
@@ -180,9 +183,88 @@ char* test_release_pages() {
 char* test_create_arena() {
     memMap *map = initMemMap(MEM_MAP_SIZE);
     mu_assert(isMapValid(map), "invalid memMap for arena creation\n");
-    PageArena arena = createPageArena(map, ARENA_SIZE);
-    mu_assert(isArenaValid(&arena), "page arena creation failure\n");
+    PageArena* arena = createPageArena(map, ARENA_SIZE);
+    mu_assert(isArenaValid(arena), "page arena creation failure\n");
+    destroyPageArena(arena);
+    releasePages(map);
+    map = NULL;
     PASS_TEST("Created Page Arena in mapped memory");
+    return NULL;
+}
+
+char* test_arena_size() {
+    memMap *map = initMemMap(MEM_MAP_SIZE);
+    mu_assert(isMapValid(map), "invalid memMap for arena size test.\n");
+    PageArena* arena = createPageArena(map, ARENA_SIZE);
+    mu_assert(isArenaValid(arena), "page arena failure on size test\n");
+    mu_assert(arena->size == ARENA_SIZE, "arena size incorrent on size test\n");
+    usize remainder = ARENA_SIZE % map->pageSize;
+    usize alignPad = (remainder == 0) ? 0 : (map->pageSize - remainder);
+    usize nextOffset = ARENA_SIZE + alignPad;
+    mu_assert(map->offset == nextOffset, "memMap Memory offset not ready for next value");
+    destroyPageArena(arena);
+    releasePages(map);
+    map = NULL;
+    PASS_TEST("Arena size corrent, map ready");
+    return NULL;
+}
+
+char* test_multi_arena() {
+    memMap *map = initMemMap(MEM_MAP_SIZE);
+    mu_assert(isMapValid(map), "invalid memMap for multi arena test\n");
+    PageArena* arena = createPageArena(map, ARENA_SIZE);
+    mu_assert(isArenaValid(arena), "first page arena failed on multi test\n");
+    mu_assert(map->arenaCount == 1, "arena count increment on first\n");
+    mu_assert(arena->parent == map, "first page parent set correct\n");
+    PageArena* arena2 = createPageArena(map, ARENA_SIZE);
+    mu_assert(isArenaValid(arena2), "second page arena failed on multi test\n");
+    mu_assert(map->arenaCount == 2, "arena count increment on second\n");
+    mu_assert(arena2->parent == map, "second page parent set correctly\n");
+    mu_assert(arena->base != arena2->base, "Arena base not same location\n");
+    destroyPageArena(arena);
+    mu_assert(map->arenaCount == 1, "arena count decrement with first removal\n");
+    destroyPageArena(arena2);
+    mu_assert(map->arenaCount == 0, "arena count decrement with second removal\n");
+    releasePages(map);
+    map = NULL;
+    PASS_TEST("Multi Arena Success");
+    return NULL;
+}
+
+char* test_arena_data_allocation() {
+    memMap *map = initMemMap(MEM_MAP_SIZE);
+    mu_assert(isMapValid(map), "invalid memMap for data test\n");
+    PageArena* arena = createPageArena(map, ARENA_SIZE);
+    mu_assert(isArenaValid(arena), "arena creation failure on data test\n");
+    mu_assert(arena->offset == arena->previous, "arena offset/previous not zero'd\n");
+    u8* buffer = arenaPageAlloc(arena, 20 * sizeof(u8), ALIGN_4);
+    for (int i = 0; i < 20; i++) {
+        buffer[i] = i;
+    }
+    mu_assert(buffer[19] = 19, "data stored in arena\n");
+    mu_assert(arena->offset != arena->previous, "offset moved with allocation\n");
+    arenaPagePush(arena);
+    mu_assert(arena->offset == arena->previous, "stack aligned after push\n");
+    destroyPageArena(arena);
+    releasePages(map);
+    map = NULL;
+    PASS_TEST("Data stored in page Arena.");
+    return NULL;
+}
+
+char* test_destroy_recreate_arena() {
+    memMap *map = initMemMap(MEM_MAP_SIZE);
+    mu_assert(isMapValid(map), "invalid memMap for recreation test\n");
+    PageArena* arena = createPageArena(map, ARENA_SIZE);
+    mu_assert(isArenaValid(arena), "arena creation fail for recreation test\n");
+    mu_assert(map->offset > 0, "offset failed to shift correctly with arena\n");
+    mu_assert(map->arenaCount = 1, "area failed to increment map arena count\n");
+    destroyPageArena(arena);
+    mu_assert(!isArenaValid(arena), "arena not destroyed\n");
+    mu_assert(map->offset = 0, "map offset not restored on page destroy\n");
+    arena = createPageArena(map, ARENA_SIZE);
+    mu_assert(isArenaValid(arena), "arena recreation failed after destroy\n");
+    PASS_TEST("Recreate Page Arena after destory");
     return NULL;
 }
 
@@ -196,6 +278,10 @@ static char* all_tests() {
     mu_run_test(test_meta_guard_position_rear);
     mu_run_test(test_release_pages);
     mu_run_test(test_create_arena);
+    mu_run_test(test_arena_size);
+    mu_run_test(test_multi_arena);
+    mu_run_test(test_arena_data_allocation);
+    mu_run_test(test_destroy_recreate_arena);
     return NULL;
 }
 

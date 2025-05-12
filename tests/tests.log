@@ -10350,3 +10350,1178 @@ DEBUG tests/test_scratch_arena.c:255:
 ------ test_one_align
 DEBUG tests/test_scratch_arena.c:256: 
 ------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:202: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:190: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:191: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:192: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:193: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:194: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:195: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:196: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:197: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:198: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:260: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:240: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_alloc_overflow
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_exact_boundary
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_overflow_huge_allocation
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_odd_alignment
+[ERROR]:  (src/memory/scratch_arena.c:53) :  Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:202: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:190: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:191: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:192: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:193: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:194: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:195: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:196: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:197: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:198: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:260: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:240: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_alloc_overflow
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_exact_boundary
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_overflow_huge_allocation
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_odd_alignment
+[ERROR]:  (src/memory/scratch_arena.c:53) :  Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:202: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:190: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:191: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:192: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:193: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:194: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:195: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:196: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:197: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:198: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:260: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:240: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_alloc_overflow
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_exact_boundary
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_overflow_huge_allocation
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_odd_alignment
+[ERROR]:  (src/memory/scratch_arena.c:53) :  Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:217: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:204: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:205: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:206: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:207: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:208: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:209: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:210: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:211: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:212: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:213: 
+------ test_arena_size
+DEBUG tests/test_scratch_arena.c:260: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:240: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_alloc_overflow
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_exact_boundary
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_overflow_huge_allocation
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_odd_alignment
+[ERROR]:  (src/memory/scratch_arena.c:53) :  Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:232: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:218: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:219: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:220: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:221: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:222: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:223: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:224: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:225: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:226: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:227: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:228: 
+------ test_multi_arena
+[ERROR] (tests/test_page_arena.c:212 errno: Invalid argument) Arena base not same location
+
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:232: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:218: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:219: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:220: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:221: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:222: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:223: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:224: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:225: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:226: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:227: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:228: 
+------ test_multi_arena
+[ERROR] (tests/test_page_arena.c:212 errno: Invalid argument) Arena base not same location
+
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:232: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:218: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:219: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:220: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:221: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:222: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:223: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:224: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:225: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:226: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:227: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:228: 
+------ test_multi_arena
+[ERROR] (tests/test_page_arena.c:212 errno: Invalid argument) Arena base not same location
+
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:234: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:220: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:221: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:222: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:223: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:224: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:225: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:226: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:227: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:228: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:229: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:230: 
+------ test_multi_arena
+[ERROR] (tests/test_page_arena.c:214 errno: Invalid argument) Arena base not same location
+
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:234: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:220: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:221: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:222: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:223: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:224: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:225: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:226: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:227: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:228: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:229: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:230: 
+------ test_multi_arena
+DEBUG tests/test_scratch_arena.c:260: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:240: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_alloc_overflow
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_exact_boundary
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_overflow_huge_allocation
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_odd_alignment
+[ERROR]:  (src/memory/scratch_arena.c:53) :  Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:234: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:220: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:221: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:222: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:223: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:224: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:225: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:226: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:227: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:228: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:229: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:230: 
+------ test_multi_arena
+DEBUG tests/test_scratch_arena.c:260: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:240: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_alloc_overflow
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_exact_boundary
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_overflow_huge_allocation
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_odd_alignment
+[ERROR]:  (src/memory/scratch_arena.c:53) :  Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:234: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:220: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:221: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:222: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:223: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:224: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:225: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:226: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:227: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:228: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:229: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:230: 
+------ test_multi_arena
+DEBUG tests/test_scratch_arena.c:260: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:240: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_alloc_overflow
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_exact_boundary
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_overflow_huge_allocation
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_odd_alignment
+[ERROR]:  (src/memory/scratch_arena.c:53) :  Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:249: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:234: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:235: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:236: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:237: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:238: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:239: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:240: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:241: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:242: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:243: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:244: 
+------ test_multi_arena
+DEBUG tests/test_page_arena.c:245: 
+------ test_arena_data_allocation
+DEBUG tests/test_scratch_arena.c:260: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:240: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_alloc_overflow
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_exact_boundary
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_overflow_huge_allocation
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_odd_alignment
+[ERROR]:  (src/memory/scratch_arena.c:53) :  Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:253: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:238: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:239: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:240: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:241: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:242: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:243: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:244: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:245: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:246: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:247: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:248: 
+------ test_multi_arena
+DEBUG tests/test_page_arena.c:249: 
+------ test_arena_data_allocation
+DEBUG tests/test_scratch_arena.c:260: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:240: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_alloc_overflow
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_exact_boundary
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_overflow_huge_allocation
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_odd_alignment
+[ERROR]:  (src/memory/scratch_arena.c:53) :  Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:265: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:250: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:251: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:252: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:253: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:254: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:255: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:256: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:257: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:258: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:259: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:260: 
+------ test_multi_arena
+DEBUG tests/test_page_arena.c:261: 
+------ test_arena_data_allocation
+DEBUG tests/test_scratch_arena.c:260: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:240: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_alloc_overflow
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_exact_boundary
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_overflow_huge_allocation
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_odd_alignment
+[ERROR]:  (src/memory/scratch_arena.c:53) :  Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:265: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:250: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:251: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:252: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:253: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:254: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:255: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:256: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:257: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:258: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:259: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:260: 
+------ test_multi_arena
+DEBUG tests/test_page_arena.c:261: 
+------ test_arena_data_allocation
+DEBUG tests/test_scratch_arena.c:260: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:240: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_alloc_overflow
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_exact_boundary
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_overflow_huge_allocation
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_odd_alignment
+[ERROR]:  (src/memory/scratch_arena.c:53) :  Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:271: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:256: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:257: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:258: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:259: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:260: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:261: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:262: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:263: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:264: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:265: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:266: 
+------ test_multi_arena
+DEBUG tests/test_page_arena.c:267: 
+------ test_arena_data_allocation
+DEBUG tests/test_scratch_arena.c:260: ----- RUNNING: ./test_lib/scratch_arena_tests
+DEBUG tests/test_scratch_arena.c:240: 
+------ test_create_arena
+DEBUG tests/test_scratch_arena.c:241: 
+------ test_alloc_overflow
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:242: 
+------ test_alloc_zero_size
+DEBUG tests/test_scratch_arena.c:243: 
+------ test_alloc_exact_boundary
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:244: 
+------ test_arena_size_init
+DEBUG tests/test_scratch_arena.c:245: 
+------ test_arena_offset_init
+DEBUG tests/test_scratch_arena.c:246: 
+------ test_arena_previous_init
+DEBUG tests/test_scratch_arena.c:247: 
+------ test_alloc_normal
+DEBUG tests/test_scratch_arena.c:248: 
+------ test_hundred_bytes_align
+DEBUG tests/test_scratch_arena.c:249: 
+------ test_push_pop
+DEBUG tests/test_scratch_arena.c:250: 
+------ test_double_destroy
+DEBUG tests/test_scratch_arena.c:251: 
+------ test_pop_before_push
+DEBUG tests/test_scratch_arena.c:252: 
+------ test_zero_with_high_alignment
+DEBUG tests/test_scratch_arena.c:253: 
+------ test_overflow_huge_allocation
+[ERROR]:  (src/memory/scratch_arena.c:31) :  ERROR: allocation request beyond size of arena, return null
+DEBUG tests/test_scratch_arena.c:254: 
+------ test_odd_alignment
+[ERROR]:  (src/memory/scratch_arena.c:53) :  Returning null due to unacceptable alignment request on allocation.
+DEBUG tests/test_scratch_arena.c:255: 
+------ test_one_align
+DEBUG tests/test_scratch_arena.c:256: 
+------ test_alignment_is_aligned
+DEBUG tests/test_dist_matrix.c:80: ----- RUNNING: ./test_lib/dist_matrix_tests
+DEBUG tests/test_dist_matrix.c:72: 
+------ test_count_lines
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:73: 
+------ test_real_data
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:74: 
+------ test_italian_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:75: 
+------ test_dist_loading
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_dist_matrix.c:76: 
+------ test_canada_cities
+[ERROR]:  (src/tsp/dist_matrix.c:17) :  INFO: Opened file successfully!
+[ERROR]:  (src/tsp/dist_matrix.c:47) :  INFO: Opened file successfully!
+DEBUG tests/test_page_arena.c:288: ----- RUNNING: ./test_lib/page_arena_tests
+DEBUG tests/test_page_arena.c:272: 
+------ test_create_memMap
+DEBUG tests/test_page_arena.c:273: 
+------ test_front_guard_check
+DEBUG tests/test_page_arena.c:274: 
+------ test_rear_guard_check
+DEBUG tests/test_page_arena.c:275: 
+------ test_guard_position_rear
+DEBUG tests/test_page_arena.c:276: 
+------ test_guard_position_front
+DEBUG tests/test_page_arena.c:277: 
+------ test_meta_guard_position_front
+DEBUG tests/test_page_arena.c:278: 
+------ test_meta_guard_position_rear
+DEBUG tests/test_page_arena.c:279: 
+------ test_release_pages
+DEBUG tests/test_page_arena.c:280: 
+------ test_create_arena
+DEBUG tests/test_page_arena.c:281: 
+------ test_arena_size
+DEBUG tests/test_page_arena.c:282: 
+------ test_multi_arena
+DEBUG tests/test_page_arena.c:283: 
+------ test_arena_data_allocation
+DEBUG tests/test_page_arena.c:284: 
+------ test_destroy_recreate_arena
+[ERROR] (tests/test_page_arena.c:264 errno: Invalid argument) map offset not restored on page destroy
+

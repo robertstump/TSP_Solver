@@ -31,7 +31,7 @@ void memMapPush(memMap* m);
 void memMapPop(memMap* m);
 void releasePages(memMap* map);
 
-PageArena createPageArena(memMap* map, usize arenaSize);
+PageArena *createPageArena(memMap* map, usize arenaSize);
 memptr arenaPageAlloc(PageArena* arena, usize alloc_size, usize alignment);
 void resetPageArena(PageArena* arena);
 void arenaPagePop(PageArena* arena);

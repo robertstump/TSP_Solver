@@ -54,7 +54,9 @@ void pageAlign(memMap* map, usize arenaSize) {
     usize alignPad = (remainder == 0) ? 0 : (map->pageSize - remainder);
     if (map->offset + alignPad + arenaSize < map->limit) {
         map->offset += arenaSize + alignPad;
+        return;
     }
+    LOG_ERROR("ARENA OVERFLOW on offset alginment : %d Arena", map->arenaCount);
 }
 
 void memMapPush(memMap* m) {
@@ -69,20 +71,30 @@ void releasePages(memMap* map) {
     munmap(map->start, map->limit);
 }
 
-PageArena createPageArena(memMap* map, usize arenaSize) {
+PageArena* createPageArena(memMap* map, usize arenaSize) {
     //TODO: Refactor to store PageArena at structBase of arena.parent
-    PageArena arena;
-    arena.base = (byte)map->base + map->offset; 
+    byte arenaBase = (byte)map->base + map->offset; 
     pageAlign(map, arenaSize);
-    if(!arena.base) {
+    if(!arenaBase) {
         LOG_ERROR("Arena allocation failed.");
         exit(EXIT_FAILURE);
     }
-    arena.size = arenaSize;
-    arena.offset = 0;
-    arena.previous = arena.offset;
-    arena.parent = map;
-    arena.parent.arenaCount++;
+    PageArena tmp;
+    tmp.size = arenaSize;
+    tmp.offset = 0;
+    tmp.previous = tmp.offset;
+    tmp.parent = map;
+    byte structBase;
+    if(tmp.parent->arenaCount < 1) {
+        structBase = tmp.parent->structBase + sizeof(memMap);
+    } else {
+        structBase = tmp.parent->structBase + sizeof(memMap) + tmp.parent->arenaCount * sizeof(PageArena);
+    }
+    memcpy(structBase, &tmp, sizeof(PageArena));
+    tmp.parent->arenaCount++;
+    PageArena* arena = (PageArena*)structBase;
+    arena->base = arenaBase;
+    memMapPush(map);
     return arena;
 }
 
@@ -126,6 +138,7 @@ memptr arenaPageAlloc(PageArena* arena, usize alloc_size, usize alignment) {
 
 void resetPageArena(PageArena* arena) {
     arena->offset = 0;
+    arena->previous = 0;
 }
 
 void arenaPagePush(PageArena* arena) {
@@ -146,8 +159,12 @@ void destroyPageArena(PageArena* arena) {
         arena->size = 0;
         arena->offset = 0;
         if (arena->parent->arenaCount > 0) {
-            arena->parent->areanCount--;
+            arena->parent->arenaCount--;
         }
+        if(arena->parent->arenaCount > 0) {
+            memMapPop(arena->parent);
+        }
+
     }
 }
     
