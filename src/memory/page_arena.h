@@ -3,14 +3,18 @@
 
 #include "common_types.h"
 
-typedef struct {
+typedef struct memMap{
     memptr start;
-    memptr base;
+    memptr structBase;
+    byte base;
     usize offset;
     usize previous;
     usize limit;
     usize size;
     usize pageSize;
+    usize selfSize;
+    u32 arenaCount;
+    u32 _pad;
 } memMap;
 
 typedef struct {
@@ -18,9 +22,10 @@ typedef struct {
     usize offset;
     usize size;
     usize previous;
+    memMap* parent;
 } PageArena;
 
-memMap reservePages(usize requestedSize);
+memMap *initMemMap(usize requestedSize);
 void pageAlign(memMap* map, usize arenaSize);
 void memMapPush(memMap* m);
 void memMapPop(memMap* m);

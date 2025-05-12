@@ -7,7 +7,7 @@ ScratchArena createScratchArena(usize arena_size) {
     ScratchArena arena;
     arena.base = malloc(arena_size);
     if(!arena.base) {
-        fprintf(stderr, "Arena allocation failed.\n");
+        LOG_ERROR("Arena allocation failed.");
         exit(EXIT_FAILURE);
     }
     arena.size = arena_size;
@@ -28,7 +28,7 @@ void* arenaScratchAlloc(ScratchArena* arena, usize alloc_size, usize alignment) 
         case ALIGN_128:
 
             if(arena->size < alloc_size || arena->size - arena->offset < alloc_size || arena->size < alignment) {
-                fprintf(stderr, "ERROR: allocation request beyond size of arena, return null\n");
+                LOG_ERROR("ERROR: allocation request beyond size of arena, return null");
                 return NULL;
             }
 
@@ -42,7 +42,7 @@ void* arenaScratchAlloc(ScratchArena* arena, usize alloc_size, usize alignment) 
             }
 
             if(aligned + arena->offset > arena->size) {
-                fprintf(stderr, "ERROR: Arena overflow!\n");
+                LOG_ERROR("ERROR: Arena overflow!");
                 return NULL;
             }
 
@@ -50,7 +50,7 @@ void* arenaScratchAlloc(ScratchArena* arena, usize alloc_size, usize alignment) 
         arena->offset += aligned;
         return ptr;
     }
-    fprintf(stderr, "ERROR: Returning null due to unacceptable alignment request on allocation.\n");
+    LOG_ERROR("Returning null due to unacceptable alignment request on allocation.");
     return NULL;
 }
 
@@ -68,7 +68,7 @@ void arenaScratchPop(ScratchArena* arena) {
 
 void destroyScratchArena(ScratchArena* arena) {
     if(arena == NULL) {
-        fprintf(stdout, "Arena already free, exit function.\n");
+        LOG_ERROR("Arena already free, exit function.");
         return;
     }
     else {

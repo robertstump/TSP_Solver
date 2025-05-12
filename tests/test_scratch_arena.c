@@ -16,7 +16,7 @@ char* test_create_arena() {
     ScratchArena arena = createScratchArena(ARENA_SIZE);
     mu_assert(isArenaValid(&arena), "Failed to create arena");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] Create Arena Success!\n");
+    PASS_TEST(" Create Arena Success!");
     return NULL;
 }
 
@@ -24,7 +24,7 @@ char* test_arena_size_init() {
     ScratchArena arena = createScratchArena(ARENA_SIZE);
     mu_assert(arena.size == 1048576, "Arena size not correct");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] Arena size correct\n");
+    PASS_TEST(" Arena size correct");
     return NULL;
 }
 
@@ -32,14 +32,15 @@ char* test_arena_offset_init() {
     ScratchArena arena = createScratchArena(ARENA_SIZE);
     mu_assert(arena.offset == 0, "Arena initial offset misaligned.");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] Arena offset correct\n");
+    PASS_TEST(" Arena offset correct");
     return NULL;
 }
 
 char* test_arena_previous_init() {
     ScratchArena arena = createScratchArena(ARENA_SIZE);
-    mu_assert(arena.previous == 0, "Arena initial previous not cleared.\n");
+    mu_assert(arena.previous == 0, "Arena initial previous not cleared.");
     destroyScratchArena(&arena);
+    PASS_TEST(" Arena Previous correct");
     return NULL;
 }
 
@@ -49,7 +50,7 @@ char* test_alloc_normal() {
     mu_assert(ptr != NULL, "Expected non-null allocation.");
     mu_assert(arena.offset >= 64, "Offset should have increased by at least 64.");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] Success void pointer allocation.\n");
+    PASS_TEST(" Success void pointer allocation.");
     return NULL;
 }
 
@@ -59,7 +60,7 @@ char* test_alloc_overflow() {
     memptr ptr = arenaScratchAlloc(&arena, 32, ALIGN_16);
     mu_assert(ptr == NULL, "Expected allocation to fail due to overflow.");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] Successful allocation fail for overflow.\n");
+    PASS_TEST(" Successful allocation fail for overflow.");
     return 0;
 }
 
@@ -70,7 +71,7 @@ char* test_alloc_zero_size() {
     mu_assert(ptr != NULL, "Expected non-null pointer for zero-sized allocation.");
     mu_assert(arena.offset >= initial_offset, "Offset should not decrease for zero size allocation.");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] Zero allocation does not decrease offset.\n");
+    PASS_TEST(" Zero allocation does not decrease offset.");
     return NULL;
 }
 
@@ -80,7 +81,7 @@ char* test_alloc_exact_boundary() {
     memptr ptr = arenaScratchAlloc(&arena, 32, ALIGN_8);
     mu_assert(ptr == NULL, "Expected NULL due to boundary overflow.");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] Overflow check, success\n");
+    PASS_TEST(" Overflow check, success");
     return NULL;
 }
 
@@ -95,7 +96,7 @@ char* test_push_pop() {
     mu_assert(arena.previous == arena.offset, "Pop should return offset to saved position");
     mu_assert(arena.offset == 0, "Offset should return to zero");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] Successful push/pop.\n");
+    PASS_TEST(" Successful push/pop.");
     return NULL;
 }
 
@@ -109,7 +110,7 @@ char* test_hundred_bytes_align() {
     arenaScratchPop(&arena);
     mu_assert(arena.offset == arena.previous, "Expected offset return to previous location.");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[x] Basic memory alignment pass.\n");
+    PASS_TEST("Basic memory alignment pass.");
     return NULL;
 }
 
@@ -119,117 +120,117 @@ char* test_double_destroy() {
     destroyScratchArena(&arena);
     mu_assert(arena.base == NULL, "Expect arena destroyed")
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] Double destroy does not double free memory\n");
+    PASS_TEST(" Double destroy does not double free memory");
     return NULL;
 }
 
 char* test_pop_before_push() {
     ScratchArena arena = createScratchArena(1024);
-    mu_assert(arena.base != NULL, "Expect arena allocation\n");
+    mu_assert(arena.base != NULL, "Expect arena allocation");
     arenaScratchPop(&arena);
-    mu_assert(arena.offset == 0, "Expect offset still zero after no-push pop.\n");
+    mu_assert(arena.offset == 0, "Expect offset still zero after no-push pop.");
     arenaScratchPush(&arena);
     memptr ptr = arenaScratchAlloc(&arena, 64, ALIGN_8);
-    mu_assert(ptr != NULL, "Expect pointer allocated memory.\n");
-    mu_assert(arena.offset > 0, "Expect offset increase after push.\n");
+    mu_assert(ptr != NULL, "Expect pointer allocated memory.");
+    mu_assert(arena.offset > 0, "Expect offset increase after push.");
     arenaScratchPop(&arena);
-    mu_assert(arena.offset == 0, "Expect offset return to saved position after pop.\n");
+    mu_assert(arena.offset == 0, "Expect offset return to saved position after pop.");
     arenaScratchPop(&arena);
-    mu_assert(arena.offset == 0, "Expect offset no-op on one push, two pop\n");
-    mu_assert(arena.previous == 0, "Expect previous to remain safe after double pop.\n");
+    mu_assert(arena.offset == 0, "Expect offset no-op on one push, two pop");
+    mu_assert(arena.previous == 0, "Expect previous to remain safe after double pop.");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] One push, two pops. Clear.\n");
+    PASS_TEST(" One push, two pops. Clear.");
     return NULL;
 }
 
 char* test_zero_with_high_alignment() {
     ScratchArena arena = createScratchArena(1024);
-    mu_assert(arena.base != NULL, "Expect arena allocation.\n");
+    mu_assert(arena.base != NULL, "Expect arena allocation.");
     arenaScratchPush(&arena);
     memptr ptr = arenaScratchAlloc(&arena, 0, ALIGN_64);
-    mu_assert(ptr != NULL, "Zero allocation points to zero offset.\n");
-    mu_assert(arena.offset == 0, "Zero allocation does not alter offset.\n");
-    mu_assert(arena.previous == 0, "Zero allocation does not alter previous.\n");
+    mu_assert(ptr != NULL, "Zero allocation points to zero offset.");
+    mu_assert(arena.offset == 0, "Zero allocation does not alter offset.");
+    mu_assert(arena.previous == 0, "Zero allocation does not alter previous.");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] Zero allocation fine.\n");
+    PASS_TEST(" Zero allocation fine.");
     return NULL;
 }
 
 char* test_overflow_huge_allocation() {
     ScratchArena arena = createScratchArena(1024);
-    mu_assert(arena.base != NULL, "Expect arena allocation.\n");
+    mu_assert(arena.base != NULL, "Expect arena allocation.");
     arenaScratchPush(&arena);
     memptr ptr = arenaScratchAlloc(&arena, SIZE_MAX, ALIGN_1);
-    mu_assert(ptr == NULL, "Arena should not allocate memory beyond size\n");
-    mu_assert(arena.offset == 0, "Offset remains zero, no memory allocated in overflow.\n");
+    mu_assert(ptr == NULL, "Arena should not allocate memory beyond size");
+    mu_assert(arena.offset == 0, "Offset remains zero, no memory allocated in overflow.");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] Arena huge overflow safety check.\n");
+    PASS_TEST(" Arena huge overflow safety check.");
     return NULL;
 }
 
 char* test_odd_alignment() {
     ScratchArena arena = createScratchArena(1024);
-    mu_assert(arena.base != NULL, "Expect arena allocation.\n");
+    mu_assert(arena.base != NULL, "Expect arena allocation.");
     arenaScratchPush(&arena);
     memptr ptr = arenaScratchAlloc(&arena, 64, 3);
-    mu_assert(ptr == NULL, "Expect null return on odd alignment request.\n");
+    mu_assert(ptr == NULL, "Expect null return on odd alignment request.");
     destroyScratchArena(&arena);
-    fprintf(stdout, "[X] No allocation on odd alignment request.\n");
+    PASS_TEST(" No allocation on odd alignment request.");
     return NULL;
 }
 
 //ALIGNMENT CHECKS
 char* test_one_align() {
     ScratchArena arena = createScratchArena(1024);
-    mu_assert(arena.base != NULL, "Expect arena allocation.\n");
+    mu_assert(arena.base != NULL, "Expect arena allocation.");
     arenaScratchPush(&arena);
     memptr ptr = arenaScratchAlloc(&arena, 32, ALIGN_1);
-    mu_assert(arena.offset == 32, "Expect no padding\n");
+    mu_assert(arena.offset == 32, "Expect no padding");
     memptr ptr2 = arenaScratchAlloc(&arena, 32, ALIGN_1);
-    mu_assert(arena.offset == 64, "Expect no padding\n");
+    mu_assert(arena.offset == 64, "Expect no padding");
     memptr ptr3 = arenaScratchAlloc(&arena, 32, ALIGN_1);
-    mu_assert(arena.offset == 96, "Expect no padding\n");
-    mu_assert(ptr != NULL, "Expect allocation 1.\n");
-    mu_assert(ptr2 != NULL, "Expect allocation 1.\n");
-    mu_assert(ptr3 != NULL, "Expect allocation 1.\n");
+    mu_assert(arena.offset == 96, "Expect no padding");
+    mu_assert(ptr != NULL, "Expect allocation 1.");
+    mu_assert(ptr2 != NULL, "Expect allocation 1.");
+    mu_assert(ptr3 != NULL, "Expect allocation 1.");
     destroyScratchArena(&arena);
     return NULL;
 }
 
 char* test_alignment_is_aligned() {
     ScratchArena arena = createScratchArena(1024);
-    mu_assert(arena.base != NULL, "Expect arena allocation.\n"); 
+    mu_assert(arena.base != NULL, "Expect arena allocation."); 
     arenaScratchPush(&arena);
     memptr ptr = arenaScratchAlloc(&arena, 20, ALIGN_8);
     memptr ptr2 = arenaScratchAlloc(&arena, 8, ALIGN_8);
     memptr ptr3 = arenaScratchAlloc(&arena, 5, ALIGN_8);
-    mu_assert(arena.offset % ALIGN_8 == 0, "Expect allocation aligns on ALIGN_8.\n");
-    mu_assert(ptr != NULL, "Expect allocation 24.\n");
-    mu_assert(ptr2 != NULL, "Expect allocation 8.\n");
-    mu_assert(ptr3 != NULL, "Expect allocation 8.\n");
-    mu_assert(arena.offset == 40, "Expect offset increase\n");
+    mu_assert(arena.offset % ALIGN_8 == 0, "Expect allocation aligns on ALIGN_8.");
+    mu_assert(ptr != NULL, "Expect allocation 24.");
+    mu_assert(ptr2 != NULL, "Expect allocation 8.");
+    mu_assert(ptr3 != NULL, "Expect allocation 8.");
+    mu_assert(arena.offset == 40, "Expect offset increase");
     arenaScratchPop(&arena);
     arenaScratchPush(&arena);
-    mu_assert(arena.offset == 0, "Expect offset return to previous state.\n");
+    mu_assert(arena.offset == 0, "Expect offset return to previous state.");
     memptr ptr4 = arenaScratchAlloc(&arena, 1, ALIGN_2);
     memptr ptr5 = arenaScratchAlloc(&arena, 1, ALIGN_2);
     memptr ptr6 = arenaScratchAlloc(&arena, 1, ALIGN_2);
-    mu_assert(arena.offset % ALIGN_2 == 0, "Expect allocation aligns on ALIGN_2.\n");
-    mu_assert(arena.offset == 6, "Expect offset increase.\n");
-    mu_assert(ptr4 != NULL, "Expect allocation 2.\n");
-    mu_assert(ptr5 != NULL, "Expect allocation 2.\n");
-    mu_assert(ptr6 != NULL, "Expect allocation 2.\n");
+    mu_assert(arena.offset % ALIGN_2 == 0, "Expect allocation aligns on ALIGN_2.");
+    mu_assert(arena.offset == 6, "Expect offset increase.");
+    mu_assert(ptr4 != NULL, "Expect allocation 2.");
+    mu_assert(ptr5 != NULL, "Expect allocation 2.");
+    mu_assert(ptr6 != NULL, "Expect allocation 2.");
     arenaScratchPop(&arena);
     arenaScratchPush(&arena);
-    mu_assert(arena.offset == 0, "Expect offset returns to previous state.\n");
+    mu_assert(arena.offset == 0, "Expect offset returns to previous state.");
     memptr ptr7 = arenaScratchAlloc(&arena, 3, ALIGN_4);
     memptr ptr8 = arenaScratchAlloc(&arena, 31, ALIGN_4);
     memptr ptr9 = arenaScratchAlloc(&arena, 16, ALIGN_4);
-    mu_assert(arena.offset % ALIGN_4 == 0, "Expect allocation aligns on ALIGN_4\n");
-    mu_assert(arena.offset == 52, "Expect offset increase due to allocation.\n");
-    mu_assert(ptr7 != NULL, "Expect allocation on 4.\n");
-    mu_assert(ptr8 != NULL, "Expect second allocation on 4s.\n");
-    mu_assert(ptr9 != NULL, "Expect third allocation on 4s.\n");
+    mu_assert(arena.offset % ALIGN_4 == 0, "Expect allocation aligns on ALIGN_4");
+    mu_assert(arena.offset == 52, "Expect offset increase due to allocation.");
+    mu_assert(ptr7 != NULL, "Expect allocation on 4.");
+    mu_assert(ptr8 != NULL, "Expect second allocation on 4s.");
+    mu_assert(ptr9 != NULL, "Expect third allocation on 4s.");
     arenaScratchPop(&arena);
     destroyScratchArena(&arena);
     return NULL;

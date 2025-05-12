@@ -11,10 +11,10 @@ u32 CountDataSize(const char *filename) {
 
     FILE * file = fopen(filename, "r");
     if(!file) {
-        fprintf(stderr, "ERROR: File not found!\n");
+        LOG_ERROR("File not found!");
         return EXIT_FAILURE;
     } else {
-        fprintf(stderr, "INFO: Opened file successfully!\n");
+        LOG_ERROR("INFO: Opened file successfully!");
     }
     
     char buffer[LINE_BUFFER];
@@ -41,10 +41,10 @@ u32 CountDataSize(const char *filename) {
 Vec2* LoadDistances(ScratchArena *arena, const char *filename, u32 size) {
     FILE *file = fopen(filename, "r");
     if(!file) {
-        fprintf(stderr, "ERROR: File not found!\n");
+        LOG_ERROR("File not found!");
         return NULL;
     } else {
-        fprintf(stdout, "INFO: Opened file successfully!\n");
+        LOG_ERROR("INFO: Opened file successfully!");
     }
 
     char buffer[LINE_BUFFER];

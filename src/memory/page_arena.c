@@ -1,40 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include <sys/mman.h>
 #include "arena_base.h"
 #include "page_arena.h"
 
-memMap reservePages(usize requestedSize) {
-    memMap map;
-
+memMap* initMemMap(usize requestedSize) {
     if (requestedSize < 1) {
         LOG_ERROR("Allocation must be non-zero positive integer");
-        map.start = NULL;
-        map.base = NULL;
-        map.previous = 0;
-        map.offset = 0;
-        return map;
+        return NULL;
     }
 
-    map.pageSize = sysconf(_SC_PAGESIZE);
-    usize remainder = requestedSize % map.pageSize;
-    usize pageOffset = (remainder == 0) ? 0 : (map.pageSize - remainder);
-    map.size = requestedSize + pageOffset;
-    map.limit = map.size + 2 * map.pageSize;
+    usize pageSize = sysconf(_SC_PAGESIZE);
+    usize remainder = requestedSize % pageSize;
+    usize pageOffset = (remainder == 0) ? 0 : (pageSize - remainder);
+    usize usableSize = requestedSize + pageOffset;
+    usize total = usableSize + 4 * pageSize;
 
-    map.start = mmap(NULL, map.limit, PROT_NONE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-    if (map.start == MAP_FAILED) {
-        fprintf(stderr, "FAILED TO MAP MEMORY PAGES");
-        map.start = NULL;
-        map.base = NULL;
-        map.limit = 0;
-        return map;
+    memptr raw = mmap(NULL, total, PROT_NONE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    if (raw == MAP_FAILED) {
+        LOG_ERROR("FAILED TO MAP MEMORY PAGES, size: %zu", total);
+        return NULL;
     }
-    mprotect((byte)map.start + map.pageSize, map.size, PROT_READ | PROT_WRITE);
-    map.base = map.start + map.pageSize;
-    map.previous = 0;
-    map.offset = 0;
+
+    byte structBase = (byte)raw + pageSize;
+    mprotect(structBase, pageSize, PROT_READ | PROT_WRITE);
+    byte usableStart = (byte)raw + pageSize * 3;
+    mprotect(usableStart, usableSize, PROT_READ | PROT_WRITE);
+
+    memMap tmp = { 
+        .start = raw,
+        .base = usableStart,
+        .structBase = NULL,
+        .limit = total,
+        .pageSize = pageSize,
+        .offset = 0,
+        .previous = 0,
+        .size = usableSize,
+        .arenaCount = 0
+    };
+
+    memcpy(structBase, &tmp, sizeof(memMap));
+    memMap* map = (memMap*)structBase;
+    map->structBase = map;
+    memset(usableStart, 0, 1);
+ 
     return map;
 }
 
@@ -56,21 +67,22 @@ void memMapPop(memMap* m) {
 
 void releasePages(memMap* map) {
     munmap(map->start, map->limit);
-    map->start = NULL;
-    map->base = NULL;
 }
 
 PageArena createPageArena(memMap* map, usize arenaSize) {
+    //TODO: Refactor to store PageArena at structBase of arena.parent
     PageArena arena;
     arena.base = (byte)map->base + map->offset; 
     pageAlign(map, arenaSize);
     if(!arena.base) {
-        fprintf(stderr, "Arena allocation failed.\n");
+        LOG_ERROR("Arena allocation failed.");
         exit(EXIT_FAILURE);
     }
     arena.size = arenaSize;
     arena.offset = 0;
     arena.previous = arena.offset;
+    arena.parent = map;
+    arena.parent.arenaCount++;
     return arena;
 }
 
@@ -86,7 +98,7 @@ memptr arenaPageAlloc(PageArena* arena, usize alloc_size, usize alignment) {
         case ALIGN_128:
 
             if(arena->size < alloc_size || arena->size - arena->offset < alloc_size || arena->size < alignment) {
-                fprintf(stderr, "ERROR: allocation request beyond size of arena, return null\n");
+                LOG_ERROR("allocation request beyond size of arena, return null");
                 return NULL;
             }
 
@@ -100,7 +112,7 @@ memptr arenaPageAlloc(PageArena* arena, usize alloc_size, usize alignment) {
             }
 
             if(aligned + arena->offset > arena->size) {
-                fprintf(stderr, "ERROR: Arena overflow!\n");
+                LOG_ERROR("ERROR: Arena overflow!");
                 return NULL;
             }
 
@@ -108,7 +120,7 @@ memptr arenaPageAlloc(PageArena* arena, usize alloc_size, usize alignment) {
         arena->offset += aligned;
         return ptr;
     }
-    fprintf(stderr, "ERROR: Returning null due to unacceptable alignment request on allocation.\n");
+    LOG_ERROR("Returning null due to unacceptable alignment request on allocation.");
     return NULL;
 }
 
@@ -126,13 +138,16 @@ void arenaPagePop(PageArena* arena) {
 
 void destroyPageArena(PageArena* arena) {
     if(arena == NULL) {
-        fprintf(stdout, "Arena already NULL, exit function.\n");
+        LOG_ERROR("Arena already NULL, exit function.");
         return;
     }
     else { 
         arena->base = NULL;
         arena->size = 0;
         arena->offset = 0;
+        if (arena->parent->arenaCount > 0) {
+            arena->parent->areanCount--;
+        }
     }
 }
     

@@ -11,24 +11,24 @@ s32 tests_run = 0;
 char* test_count_lines() {
     s32 count;
     count = CountDataSize("test_data/fake.tsp");
-    mu_assert(count == 10, "Count should equal file lines!\n");
-    fprintf(stdout, "[X] Count Data Size Success\n");
+    mu_assert(count == 10, "Count should equal file lines!");
+    PASS_TEST(" Count Data Size Success");
     return NULL;
 }
 
 char* test_real_data() { 
     s32 count;
     count = CountDataSize("test_data/ca4663.tsp");
-    mu_assert(count == 4663, "Count should equal number of cities!\n");
-    fprintf(stdout, "[X] Count Cities Success\n");
+    mu_assert(count == 4663, "Count should equal number of cities!");
+    PASS_TEST(" Count Cities Success");
     return NULL;
 }
 
 char* test_italian_cities() {
     s32 count;
     count = CountDataSize("test_data/it16862.tsp");
-    mu_assert(count == 16862, "Count should equal number of italian cities\n");
-    fprintf(stdout, "[X] Count Italian Cities Succes\n");
+    mu_assert(count == 16862, "Count should equal number of italian cities");
+    PASS_TEST(" Count Italian Cities Succes");
     return NULL;
 }
 
@@ -37,16 +37,16 @@ char* test_dist_loading() {
     s32 count;
     const char* filename = "test_data/fake.tsp";
     count = CountDataSize(filename);
-    mu_assert(count == 10, "Count should equal data size!\n");
+    mu_assert(count == 10, "Count should equal data size!");
     arenaScratchPush(&arena);
     Vec2* dist;
     dist = LoadDistances(&arena, filename, count);
-    mu_assert(dist != NULL, "Dist should point to distances array!\n");
-    mu_assert(dist[count - 1][0] != 0, "Value should be greater than zero.\n");
-    mu_assert(dist[count - 1][1] != 0, "Value should be greater than zero.\n");
-    mu_assert(dist[count - 1][0] == 42150.0000f, "Correct x values should be placed in array.\n");
-    mu_assert(dist[count - 1][1] == 82966.6667f, "Correct y values should be place in array.\n");
-    fprintf(stdout, "[X] Distance Values loaded properly.\n");
+    mu_assert(dist != NULL, "Dist should point to distances array!");
+    mu_assert(dist[count - 1][0] != 0, "Value should be greater than zero.");
+    mu_assert(dist[count - 1][1] != 0, "Value should be greater than zero.");
+    mu_assert(dist[count - 1][0] == 42150.0000f, "Correct x values should be placed in array.");
+    mu_assert(dist[count - 1][1] == 82966.6667f, "Correct y values should be place in array.");
+    PASS_TEST(" Distance Values loaded properly.");
     destroyScratchArena(&arena);
     return NULL;
 }
@@ -56,14 +56,14 @@ char* test_canada_cities() {
     s32 count;
     const char* filename = "test_data/ca4663.tsp";
     count = CountDataSize(filename);
-    mu_assert(count == 4663, "Count must equal size of data.\n");
+    mu_assert(count == 4663, "Count must equal size of data.");
     arenaScratchPush(&arena);
     Vec2* dist;
     dist = LoadDistances(&arena, filename, count);
-    mu_assert(dist != NULL, "'dist' must point to distance array.\n");
-    mu_assert(dist[count - 1][0] == 82483.3333f, "Correct x values in array.\n");
-    mu_assert(dist[count - 1][1] == 62250.0000f, "Correct y values in array.\n");
-    fprintf(stdout, "[X] Distance Values loaded from real data.\n");
+    mu_assert(dist != NULL, "'dist' must point to distance array.");
+    mu_assert(dist[count - 1][0] == 82483.3333f, "Correct x values in array.");
+    mu_assert(dist[count - 1][1] == 62250.0000f, "Correct y values in array.");
+    PASS_TEST(" Distance Values loaded from real data.");
     destroyScratchArena(&arena);
     return NULL;
 }

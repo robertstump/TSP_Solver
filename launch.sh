@@ -5,7 +5,8 @@ echo "#             Begin TSP Solver Solution                  #"
 echo "##########################################################"
 
 DEBUG_FLAGS="-fsanitize=address -g -O0 -Wall -Werror"
-LIGHT_DBG_FLAGS="-g -Wall -Werror"
+NO_OPT_FLAGS="-O0 -g -fno-omit-frame-pointer -fno-optimize-sibling-calls"
+LIGHT_DBG_FLAGS="-g -O0 -Wall -Werror -fno-optimize-sibling-calls -fno-omit-frame-pointer"
 CFLAGS=$LIGHT_DBG_FLAGS
 INCLUDE_FLAGS="-Iinclude -Isrc -Isrc/tsp -Isrc/memory"
 TEST_ONLY=false
@@ -26,9 +27,13 @@ for arg in "$@"; do
         -t|--test-only)
             echo "[!] Running in test-only mode."
             TEST_ONLY=true;;
+        -n|--no-optimize)
+            echo "[!] Running with no compiler optimization."
+            CFLAGS=$DEBUG_FLAGS
+            ;;
         *)
             echo "Syntax: launch.sh [flag][flag]"
-            echo "Flags --debug, -d, --test-only, -t"
+            echo "Flags --debug, -d, --test-only, -t, --no-optimize, -n (overwrites --debug)"
             ;;
     esac
 done
