@@ -45,6 +45,7 @@ echo "[.] Compiling object files..."
 clang -std=c99 $CFLAGS -c src/memory/scratch_arena.c -o build/scratch_arena.o $INCLUDE_FLAGS 
 clang -std=c99 $CFLAGS -c src/tsp/dist_matrix.c -o build/dist_matrix.o $INCLUDE_FLAGS
 clang -std=c99 $CFLAGS -c src/memory/page_arena.c -o build/page_arena.o $INCLUDE_FLAGS
+clang -std=c99 $CFLAGS -c src/tsp/trie.c -o build/trie $INCLUDE_FLAGS
 #add as needed here:
 
 #add "runner" here:
