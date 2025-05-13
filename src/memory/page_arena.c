@@ -33,6 +33,7 @@ memMap* initMemMap(usize requestedSize) {
         .start = raw,
         .base = usableStart,
         .structBase = NULL,
+        .arenaCurrent = NULL,
         .limit = total,
         .pageSize = pageSize,
         .offset = 0,
@@ -59,25 +60,20 @@ void pageAlign(memMap* map, usize arenaSize) {
     LOG_ERROR("ARENA OVERFLOW on offset alginment : %d Arena", map->arenaCount);
 }
 
-void memMapPush(memMap* m) {
-    m->previous = m->offset;
-}
-
-void memMapPop(memMap* m) {
-    m->offset = m->previous;
-}
-
 void releasePages(memMap* map) {
     munmap(map->start, map->limit);
 }
 
 PageArena* createPageArena(memMap* map, usize arenaSize) {
-    //TODO: Refactor to store PageArena at structBase of arena.parent
+    if(arenaSize > map->size - map->offset) {
+        LOG_ERROR("Arena Requested more than available memory");
+        return NULL;
+    }
     byte arenaBase = (byte)map->base + map->offset; 
     pageAlign(map, arenaSize);
     if(!arenaBase) {
         LOG_ERROR("Arena allocation failed.");
-        exit(EXIT_FAILURE);
+        return NULL;
     }
     PageArena tmp;
     tmp.size = arenaSize;
@@ -94,11 +90,21 @@ PageArena* createPageArena(memMap* map, usize arenaSize) {
     tmp.parent->arenaCount++;
     PageArena* arena = (PageArena*)structBase;
     arena->base = arenaBase;
-    memMapPush(map);
+    map->previous = map->offset;
+    if(map->arenaCurrent) {
+        arena->arenaPrevious = map->arenaCurrent;
+    } else {
+        arena->arenaPrevious = NULL;
+    }
+    map->arenaCurrent = arena;
     return arena;
 }
 
 memptr arenaPageAlloc(PageArena* arena, usize alloc_size, usize alignment) {
+    if(alloc_size < 1) {
+        LOG_ERROR("request 0 bit allocation, return NULL");
+        return NULL;
+    }
     switch(alignment) {
         case ALIGN_1:
         case ALIGN_2:
@@ -114,58 +120,36 @@ memptr arenaPageAlloc(PageArena* arena, usize alloc_size, usize alignment) {
                 return NULL;
             }
 
-            usize aligned, align_pad, offset_pad;
-            align_pad = AlignPad(alloc_size, alignment);
-            aligned = align_pad + alloc_size;
+            usize offset_pad;
+            offset_pad = AlignPad(arena->offset, alignment);
+            arena->offset += offset_pad;
 
-            if (arena->offset % alignment != 0) {
-                offset_pad = AlignPad(arena->offset, alignment);
-                arena->offset += offset_pad;
-            }
-
-            if(aligned + arena->offset > arena->size) {
+            if(alloc_size + arena->offset > arena->size) {
                 LOG_ERROR("ERROR: Arena overflow!");
                 return NULL;
             }
 
-        memptr ptr = (memptr)(arena->base + arena->offset);
-        arena->offset += aligned;
-        return ptr;
+            memptr ptr = (memptr)(arena->base + arena->offset);
+            arena->offset += alloc_size;
+            return ptr;
     }
     LOG_ERROR("Returning null due to unacceptable alignment request on allocation.");
     return NULL;
 }
 
-void resetPageArena(PageArena* arena) {
-    arena->offset = 0;
-    arena->previous = 0;
-}
+void arenaPagePop(memMap* map) {
+    if(map->arenaCurrent) {
+        PageArena* current = map->arenaCurrent;
+        current->base = NULL;
+        current->size = 0;
+        current->offset = 0;
 
-void arenaPagePush(PageArena* arena) {
-    arena->previous = arena->offset;
-}
+        map->arenaCurrent = current->arenaPrevious;
+        map->arenaCount--;
+        map->offset = map->previous;
 
-void arenaPagePop(PageArena* arena) {
-    arena->offset = arena->previous;
-}
-
-void destroyPageArena(PageArena* arena) {
-    if(arena == NULL) {
-        LOG_ERROR("Arena already NULL, exit function.");
-        return;
-    }
-    else { 
-        arena->base = NULL;
-        arena->size = 0;
-        arena->offset = 0;
-        if (arena->parent->arenaCount > 0) {
-            arena->parent->arenaCount--;
-        }
-        if(arena->parent->arenaCount > 0) {
-            memMapPop(arena->parent);
-        }
-
+    } else {
+        LOG_ERROR("Current arena NULL on pop request");
+        //exit(EXIT_FAILURE);
     }
 }
-    
-    

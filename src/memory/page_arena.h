@@ -3,9 +3,12 @@
 
 #include "common_types.h"
 
+struct PageArena;
+
 typedef struct memMap{
     memptr start;
     memptr structBase;
+    struct PageArena* arenaCurrent;
     byte base;
     usize offset;
     usize previous;
@@ -17,25 +20,21 @@ typedef struct memMap{
     u32 _pad;
 } memMap;
 
-typedef struct {
+typedef struct PageArena{
+    memMap* parent;
+    struct PageArena* arenaPrevious;
     byte base;
     usize offset;
     usize size;
     usize previous;
-    memMap* parent;
 } PageArena;
 
 memMap *initMemMap(usize requestedSize);
 void pageAlign(memMap* map, usize arenaSize);
-void memMapPush(memMap* m);
-void memMapPop(memMap* m);
 void releasePages(memMap* map);
 
 PageArena *createPageArena(memMap* map, usize arenaSize);
 memptr arenaPageAlloc(PageArena* arena, usize alloc_size, usize alignment);
-void resetPageArena(PageArena* arena);
-void arenaPagePop(PageArena* arena);
-void arenaPagePush(PageArena* arena);
-void destroyPageArena(PageArena* arena);
+void arenaPagePop(memMap* map);
 
 #endif
